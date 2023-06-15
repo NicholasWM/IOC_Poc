@@ -1,5 +1,5 @@
 import { ClientDomain, IQuery } from "../../Domain/Client.domain";
-import { GenericInMemoryRepository } from "../../../../infra/database/in-memory/generic.implementation.repository";
+import { GenericInMemoryRepository } from "../../../../infra/database/in-memory/generic.repository";
 
 export class ClientInMemoryRepository extends GenericInMemoryRepository<
     ClientDomain, IQuery

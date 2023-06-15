@@ -15,5 +15,5 @@ test('Should create a client', async () => {
     const clientCreated = await clientInMemoryRepository.findOne({ name: 'John Doe' })
     console.log(clientCreated)
     expect(clientCreated.name).toBe(client.name)
-    expect(client.hasAccount).toBe(false)
+    expect(client.userId).toBe(undefined)
 })
