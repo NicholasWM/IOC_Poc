@@ -1,7 +1,7 @@
 import { connection } from "../../../server"
-import { ClientInMemoryRepository } from "../Databases/In-Memory/Client.inMemory.implementation"
-import { ClientSchema } from "../Databases/mongoose/Client.model"
-import { ClientMongooseRepository } from "../Databases/mongoose/Client.repository"
+import { ClientInMemoryRepository } from "../Repositories/In-Memory/Client.inMemory.implementation"
+import { ClientSchema } from "../Repositories/mongoose/Client.model"
+import { ClientMongooseRepository } from "../Repositories/mongoose/Client.repository"
 import { ClientDomain } from "./Client.domain"
 
 test('Should create a client', async () => {
