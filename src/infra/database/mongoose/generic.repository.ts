@@ -1,5 +1,5 @@
+import { FilterQuery, Model, UpdateQuery, UpdateWithAggregationPipeline } from "mongoose";
 import { GenericRepository } from "../../../common/generic.repository";
-
 interface IOptions {
   includes: any[];
   offset: number;
@@ -9,31 +9,44 @@ interface IOptions {
 export class GenericMongooseRepository<T, IQuery>
   implements GenericRepository<T, IQuery, IOptions>
 {
-  get model(): T {
-    throw new Error('Method not implemented.');
+  constructor(public readonly _model: Model<T>) {}
+  get model(): Model<T> {
+    return this._model;
   }
-  create(instance: T, options?: IOptions): Promise<any> {
-    throw new Error('INSERT INTO ....');
+  async create(instance: T): Promise<any> {
+    const createdInstance = this._model.create(instance);
+    return createdInstance;
   }
-  findAll(query?: IQuery, options?: IOptions): Promise<T[]> {
-    throw new Error('Method not implemented.');
+  async findAll(query?: any, options?: IOptions): Promise<T[]> {
+    const instances = await this._model.find(query);
+    return instances;
   }
-  findOne(query: IQuery, options?: IOptions): Promise<T> {
-    throw new Error('Method not implemented.');
+  async findOne(query: any, options?: IOptions): Promise<any> {
+    const instance = await this._model.findOne(query);
+    return instance;
   }
-  findById(id: any): Promise<T> {
-    throw new Error('Method not implemented.');
+  async findById(id: any): Promise<any> {
+    const instance = await this._model.findById(id);
+    return instance;
   }
-  updateById(id: any): Promise<T> {
-    throw new Error('Method not implemented.');
+  async updateById(id: any, data: UpdateQuery<T> | undefined): Promise<any> {
+    const updated = await this._model.findByIdAndUpdate(id, data); 
+    return updated;
   }
   removeById(id: any) {
-    throw new Error('Method not implemented.');
+    const removed = this._model.findByIdAndRemove(id);
+    return removed;
   }
-  update(instance: T, options?: IOptions) {
-    throw new Error('Method not implemented.');
+  async update(query: any, instance: UpdateQuery<T> | UpdateWithAggregationPipeline | undefined, options?: IOptions) {
+    const updated = await this._model.updateMany(query, instance);
+    return updated;
   }
-  findOrCreate(query: IQuery, options?: IOptions) {
-    throw new Error('Method not implemented.');
+  async findOrCreate(query: FilterQuery<T> | undefined, instance: T | undefined) {
+    const finded = await this._model.findOne(query);
+    if (finded) {
+      return finded;
+    }
+    const created = await this._model.create(instance);
+    return created;
   }
 }

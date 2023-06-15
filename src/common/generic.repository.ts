@@ -16,10 +16,10 @@ export abstract class GenericRepository<ModelInstance, IQuery, IOptions> {
   ): Promise<ModelInstance[]>;
   abstract findOne(query: IQuery, options?: IOptions): Promise<ModelInstance>;
   abstract findById(id: any): Promise<ModelInstance>;
-  abstract updateById(id: any): Promise<ModelInstance>;
+  abstract updateById(id: any, data: any): Promise<ModelInstance>;
   abstract removeById(id: any): any;
-  abstract update(instance: ModelInstance, options?: IOptions): any;
-  abstract findOrCreate(query: IQuery, options?: IOptions): any;
+  abstract update(instance: ModelInstance, query: any, options?: IOptions): any;
+  abstract findOrCreate(query: any, instance?: ModelInstance): any;
   // abstract countByQuery;
   // abstract bulkCreate;
 }
