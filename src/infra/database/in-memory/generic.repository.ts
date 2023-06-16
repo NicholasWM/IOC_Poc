@@ -42,7 +42,7 @@ export class GenericInMemoryRepository<T, IQuery>
   findById(id: any): Promise<T> {
     throw new Error('Method not implemented.');
   }
-  updateById(id: any): Promise<T> {
+  updateById(id: any, data: any): Promise<T> {
     throw new Error('Method not implemented.');
   }
   removeById(id: any) {

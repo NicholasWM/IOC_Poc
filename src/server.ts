@@ -7,6 +7,8 @@ const port = 3001;
 
 const router = express.Router()
 
+router.use(express.json())
+
 // Conexão com o MongoDB usando o Mongoose
 export const connection = mongoose.connect('mongodb://localhost:8804', {
   authMechanism: 'DEFAULT',

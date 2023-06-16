@@ -40,7 +40,7 @@ export class GenericController<ClientDomain, IClientProps, IOptions> {
     async save(req: Request, res: Response, next: NextFunction) {
         try {
             const result = await this._service.create(req.body)
-            res.status(201).json(result)
+            return res.status(201).json(result)
         } catch (error) {
             next(error)
         }

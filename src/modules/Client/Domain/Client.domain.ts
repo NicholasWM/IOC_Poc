@@ -1,4 +1,5 @@
 export interface IClientProps {
+    id?: string,
     name?: string,
     userId?: boolean,
     email?: string,
