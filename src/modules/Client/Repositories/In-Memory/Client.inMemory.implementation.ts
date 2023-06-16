@@ -30,6 +30,7 @@ export class ClientInMemoryRepository extends GenericInMemoryRepository<
     removeById(id: any): void {
         new Promise((resolve) => {
             const data = this._data.filter((item) => item.id !== id);
+            this._data = data;
             resolve(data);
         });
     }

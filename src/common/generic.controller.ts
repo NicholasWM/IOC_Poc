@@ -59,8 +59,9 @@ export class GenericController<ClientDomain, IClientProps, IOptions> {
 
     async remove(req: Request, res: Response, next: NextFunction) {
         try {
-            const { params } = req
-            const result = await this._service.removeById(params.id)
+            const { query } = req
+            const id = query?.id
+            const result = await this._service.removeById(id)
             res.status(200).json(result)
         } catch (error) {
             next(error)

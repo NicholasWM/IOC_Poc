@@ -23,7 +23,7 @@ export class GenericService<ModelInstance, IQuery, IOptions> {
         return await this._repository.updateById(id, instance)
     }
 
-    async removeById(id: string) {
+    async removeById(id: any) {
         return await this._repository.removeById(id)
     }
 
