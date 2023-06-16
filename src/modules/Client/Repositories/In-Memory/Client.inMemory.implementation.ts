@@ -11,8 +11,10 @@ export class ClientInMemoryRepository extends GenericInMemoryRepository<
     }
     updateById(id: any, instance: any): Promise<any> {
         return new Promise((resolve) => {
+            let changedItems = 0;
             const data = this._data.map((item) => {
                 if(item.id === id) {
+                    changedItems++;
                     return {
                         ...item,
                         ...instance
@@ -21,7 +23,8 @@ export class ClientInMemoryRepository extends GenericInMemoryRepository<
                     return item
                 }
             });
-            resolve(data);
+            this._data = data;
+            resolve(changedItems);
         });
     }
     removeById(id: any): void {

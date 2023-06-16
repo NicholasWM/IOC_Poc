@@ -48,8 +48,9 @@ export class GenericController<ClientDomain, IClientProps, IOptions> {
 
     async update(req: Request, res: Response, next: NextFunction) {
         try {
-            const { body, params } = req
-            const result = await this._service.update(params.id, body)
+            const { body, query } = req
+            const id = query?.id
+            const result = await this._service.updateById(id, body)
             res.status(200).json(result)
         } catch (error) {
             next(error)

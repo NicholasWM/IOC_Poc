@@ -19,7 +19,7 @@ export class GenericService<ModelInstance, IQuery, IOptions> {
         return await this._repository.create(instance)
     }
 
-    async updateById(id: string, instance: ModelInstance) {
+    async updateById(id: any, instance: ModelInstance) {
         return await this._repository.updateById(id, instance)
     }
 
