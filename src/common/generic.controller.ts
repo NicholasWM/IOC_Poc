@@ -3,14 +3,16 @@ import {
     Response,
     NextFunction,
  } from "express"
+import { GenericService } from "./generic.service"
+import { ClientDomain, IClientProps } from "../modules/Client/Domain/Client.domain"
 
-export class GenericController {
-    constructor(private readonly _service: any) {}
+export class GenericController<ClientDomain, IClientProps, IOptions> {
+    constructor(private readonly _service: GenericService<ClientDomain, IClientProps, IOptions>) {}
 
     async findAll(req: Request, res: Response, next: NextFunction) {
         try {
-            const { query } = req
-            const result = await this._service.findAll(query)
+            const { body } = req
+            const result = await this._service.findAll(body)
             res.status(200).json(result)
         } catch (error) {
             next(error)
@@ -37,7 +39,7 @@ export class GenericController {
 
     async save(req: Request, res: Response, next: NextFunction) {
         try {
-            const result = await this._service.save(req.body)
+            const result = await this._service.create(req.body)
             res.status(201).json(result)
         } catch (error) {
             next(error)
@@ -57,7 +59,7 @@ export class GenericController {
     async remove(req: Request, res: Response, next: NextFunction) {
         try {
             const { params } = req
-            const result = await this._service.delete(params.id)
+            const result = await this._service.removeById(params.id)
             res.status(200).json(result)
         } catch (error) {
             next(error)

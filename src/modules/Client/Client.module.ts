@@ -19,11 +19,29 @@ export class ClientModule {
 
         router.route('/client')
             .get(...this._get())
+            .post(...this._create())
+            .put(...this._update())
+            .delete(...this._delete())
     }
 
     _get(): any[] {
         return [
-            (...args: IControllerFunctionParams) => this.controller.get(...args)
+            (...args: IControllerFunctionParams) => this.controller.findAll(...args)
+        ]
+    }
+    _create(): any[] {
+        return [
+            (...args: IControllerFunctionParams) => this.controller.save(...args)
+        ]
+    }
+    _update(): any[] {
+        return [
+            (...args: IControllerFunctionParams) => this.controller.update(...args)
+        ]
+    }
+    _delete(): any[] {
+        return [
+            (...args: IControllerFunctionParams) => this.controller.remove(...args)
         ]
     }
 }
