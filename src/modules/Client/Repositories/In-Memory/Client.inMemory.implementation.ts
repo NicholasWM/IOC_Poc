@@ -11,20 +11,18 @@ export class ClientInMemoryRepository extends GenericInMemoryRepository<
     }
     updateById(id: any, instance: any): Promise<any> {
         return new Promise((resolve) => {
-            let changedItems = 0;
+            let changedItem
             const data = this._data.map((item) => {
-                if(item.id === id) {
-                    changedItems++;
-                    return {
-                        ...item,
-                        ...instance
-                    }
-                } else {
-                    return item
+                if (item.id === id) {
+                    changedItem = { ...item, ...instance }
+                    return changedItem
                 }
+                return item
             });
+
             this._data = data;
-            resolve(changedItems);
+
+            resolve(changedItem)
         });
     }
     removeById(id: any): void {
@@ -47,21 +45,38 @@ export class ClientInMemoryRepository extends GenericInMemoryRepository<
     }
     async create(instance: IClientProps, options?: any): Promise<any> {
         return new Promise((resolve) => {
-            this._data.push({
+            console.log('create')
+            const newData = {
                 ...instance,
                 id: Math.random().toString(36).substring(7),
                 createdAt: new Date(),
                 updatedAt: new Date(),
-            } as ClientDomain);
-            resolve(instance);
+            } as ClientDomain
+            console.log(newData)
+            this._data.push(newData);
+            resolve(newData);
         });
     }
     get model(): any {
         return this
     }
-    findOne(query: IQuery, options?: any): Promise<any> {
+    findOne(query: any, options?: any): Promise<any> {
+        console.log('findOne', query)
         return new Promise((resolve) => {
-            const data = this._data.find((item) => item.id === query.id);
+            console.log(this._data)
+            const data = this._data.find((item: any) => {
+                const keys = Object.keys(query)
+                let found = true
+                keys.forEach((key: any) => {
+                    if (item[key] !== query[key]) {
+                        found = false
+                    }
+                })
+                if (found) {
+                    return item
+                }
+            });
+            console.log(data)
             resolve(data);
         });
     }

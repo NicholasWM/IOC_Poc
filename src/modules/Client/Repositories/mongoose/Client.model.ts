@@ -14,7 +14,9 @@ export class ClientDocument extends Model<ClientDomain> {
 } 
 
 export const ClientSchema = new mongoose.Schema<ClientDocument>({
-    id:{ type: mongoose.Schema.Types.ObjectId },
+    id:{
+        type: mongoose.Schema.Types.ObjectId,
+    },
     name: String,
     email: String,
     phone: String,
@@ -24,7 +26,10 @@ export const ClientSchema = new mongoose.Schema<ClientDocument>({
     updatedAt: { type: Date, default: Date.now },
     deletedAt: { type: Date, default: Date.now },
 });
-
+ClientSchema.pre('save', function (next) {
+    this.id = this._id; // Atribui o valor do _id para o campo id
+    next();
+  });
 export const ClientModel: Model<ClientDocument> = mongoose.model(
     "Client",
     ClientSchema
