@@ -14,6 +14,7 @@ export class ClientDocument extends Model<ClientDomain> {
 } 
 
 export const ClientSchema = new mongoose.Schema<ClientDocument>({
+    id:{ type: mongoose.Schema.Types.ObjectId },
     name: String,
     email: String,
     phone: String,
