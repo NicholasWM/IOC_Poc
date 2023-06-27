@@ -1,7 +1,7 @@
 export interface IClientProps {
     id?: string,
     name?: string,
-    userId?: boolean,
+    userId?: string,
     email?: string,
     phone?: string,
     telegram?: string,
@@ -13,7 +13,6 @@ export interface IClientProps {
 export type IQuery = {
     [key in keyof IClientProps]?: any;
   };
-  
 
 export class ClientDomain implements IClientProps{
     public readonly id?: string
@@ -21,7 +20,7 @@ export class ClientDomain implements IClientProps{
     public readonly email?: string
     public readonly phone?: string
     public readonly telegram?: string
-    public readonly userId?: boolean
+    public readonly userId?: string
     public readonly createdAt?: Date
     public readonly updatedAt?: Date
     public readonly deletedAt?: Date
