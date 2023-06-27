@@ -17,7 +17,7 @@ export class GenericMongooseRepository<T, IQuery>
     const createdInstance = this._model.create(instance);
     return createdInstance;
   }
-  async findAll(query?: any, options?: IOptions): Promise<T[]> {
+  async findAll(query?: any, options?: IOptions): Promise<any[]> {
     const instances = await this._model.find(query);
     return instances;
   }
@@ -30,7 +30,7 @@ export class GenericMongooseRepository<T, IQuery>
     return instance;
   }
   async updateById(id: any, data: UpdateQuery<T> | undefined): Promise<any> {
-    const updated = await this._model.findByIdAndUpdate(id, data); 
+    const updated = await this._model.findByIdAndUpdate(id, data);
     return updated;
   }
   removeById(id: any) {
