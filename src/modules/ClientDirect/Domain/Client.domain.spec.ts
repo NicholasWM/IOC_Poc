@@ -4,6 +4,8 @@ import { ClientService } from "../Services/Client.service"
 import { ClientDomain, IClientProps } from "./Client.domain"
 import { ClientInMemoryRepository } from "../Repositories/In-Memory/Client.inMemory.implementation"
 
+// Só da para mudar o repository usado através do import da service
+
 describe('Client Domain', () => {
     let clientService: ClientService<IClientProps, IClientProps, any>
     let connectionMongo: typeof mongoose
