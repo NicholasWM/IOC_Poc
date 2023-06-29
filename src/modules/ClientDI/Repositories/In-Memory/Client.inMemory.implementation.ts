@@ -8,6 +8,7 @@ export class ClientInMemoryRepository extends GenericInMemoryRepository<
     constructor() {
         super();
         this._data = [] as ClientDomain[];
+        console.log('InMemoryRepository constructor')
     }
     updateById(id: any, instance: any): Promise<any> {
         return new Promise((resolve) => {
@@ -45,14 +46,12 @@ export class ClientInMemoryRepository extends GenericInMemoryRepository<
     }
     async create(instance: IClientProps, options?: any): Promise<any> {
         return new Promise((resolve) => {
-            console.log('create')
             const newData = {
                 ...instance,
                 id: Math.random().toString(36).substring(7),
                 createdAt: new Date(),
                 updatedAt: new Date(),
             } as ClientDomain
-            console.log(newData)
             this._data.push(newData);
             resolve(newData);
         });
@@ -61,9 +60,7 @@ export class ClientInMemoryRepository extends GenericInMemoryRepository<
         return this
     }
     findOne(query: any, options?: any): Promise<any> {
-        console.log('findOne', query)
         return new Promise((resolve) => {
-            console.log(this._data)
             const data = this._data.find((item: any) => {
                 const keys = Object.keys(query)
                 let found = true
@@ -76,7 +73,6 @@ export class ClientInMemoryRepository extends GenericInMemoryRepository<
                     return item
                 }
             });
-            console.log(data)
             resolve(data);
         });
     }
