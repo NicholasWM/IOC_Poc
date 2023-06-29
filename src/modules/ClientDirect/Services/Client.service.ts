@@ -4,7 +4,8 @@ import { ClientMongooseRepository } from "../Repositories/mongoose/Client.reposi
 
 export class ClientService<TModel, TQuery, IOptions> extends GenericService<TModel, TQuery, IOptions> {
     constructor() {
-        super(new ClientMongooseRepository());
-        // super(new ClientInMemoryRepository());
+        // PARA TESTAR COM MONGO/IN-MEMORY, COMENTE/DESCOMENTE AS LINHAS ABAIXO
+        // super(new ClientMongooseRepository());
+        super(new ClientInMemoryRepository());
     }
 }
