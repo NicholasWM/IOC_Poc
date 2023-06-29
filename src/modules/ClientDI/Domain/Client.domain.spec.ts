@@ -35,7 +35,6 @@ describe('Client Domain', () => {
         
             const createdItem = await clientService.create(client)
             const clientCreated = await clientService.findOne({ name: 'John Doe' })
-            console.log(clientCreated)
             expect(clientCreated.name).toBe(client.name)
             expect(client.userId).toBe(undefined)
         })
@@ -85,7 +84,6 @@ describe('Client Domain', () => {
         
             const createdItem = await clientService.create(client)
             const clientCreated = await clientService.findOne({ name: 'John Doe' })
-            console.log(clientCreated)
             expect(clientCreated.name).toBe(client.name)
             expect(client.userId).toBe(undefined)
         })
