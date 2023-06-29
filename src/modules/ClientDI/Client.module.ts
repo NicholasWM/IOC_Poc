@@ -10,7 +10,7 @@ import { ClientService } from "./Services/Client.service";
 export class ClientModule {
     private readonly service: GenericService<ClientDomain, IClientProps, any>
     private readonly controller: ClientController<ClientDomain, IClientProps, any>
-    private readonly repository: GenericRepository<ClientDomain, IClientProps, any>
+    private readonly repository: GenericRepository
 
     constructor(readonly router: Router) {
         this.repository = new ClientInMemoryRepository()
