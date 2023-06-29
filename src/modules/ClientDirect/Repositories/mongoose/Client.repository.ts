@@ -5,6 +5,7 @@ import { ClientDocument, ClientModel, ClientSchema } from "./Client.model";
 export class ClientMongooseRepository extends GenericMongooseRepository {
   constructor() {
     super(ClientModel);
+    console.log('MongooseRepository constructor')
   }
 
   dropDatabase() {
