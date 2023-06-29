@@ -7,8 +7,4 @@ export class ClientController<ModelInstance, IQuery, IOptions> extends GenericCo
     constructor() {
         super(new ClientService());
     }
-
-    get(req: Request, res: Response, next: NextFunction) {
-        return res.send('Hello, Express!');
-    }
 }
