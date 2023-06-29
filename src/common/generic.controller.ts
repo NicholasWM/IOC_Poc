@@ -4,7 +4,7 @@ import {
     NextFunction,
  } from "express"
 import { GenericService } from "./generic.service"
-import { ClientDomain, IClientProps } from "../modules/Client/Domain/Client.domain"
+import { ClientDomain, IClientProps } from "../modules/ClientDI/Domain/Client.domain"
 
 export class GenericController<ClientDomain, IClientProps, IOptions> {
     constructor(private readonly _service: GenericService<ClientDomain, IClientProps, IOptions>) {}
