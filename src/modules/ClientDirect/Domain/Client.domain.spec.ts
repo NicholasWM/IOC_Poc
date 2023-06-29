@@ -8,7 +8,7 @@ describe('Client Domain', () => {
     let clientService: ClientService<IClientProps, IClientProps, any>
     let connectionMongo: typeof mongoose
 
-    describe('Client With Default Repository(Mongo)', () => {
+    describe('Client With Default Repository(Depends on Service import)', () => {
         beforeAll(async () => {
             connectionMongo = await connection
             clientService = new ClientService()
@@ -23,7 +23,6 @@ describe('Client Domain', () => {
         
             const createdItem = await clientService.create(client)
             const clientCreated = await clientService.findOne({ name: 'John Doe' })
-            console.log(clientCreated)
             expect(clientCreated.name).toBe(client.name)
             expect(client.userId).toBe(undefined)
         })
