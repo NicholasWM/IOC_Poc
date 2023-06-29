@@ -8,7 +8,7 @@ interface IOptions {
 }
 
 export class GenericInMemoryRepository<T, IQuery>
-  implements GenericRepository<T, IQuery, IOptions>
+  implements GenericRepository
 {
   _data: any[];
 

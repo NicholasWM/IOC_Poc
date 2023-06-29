@@ -9,7 +9,7 @@ import { ClientService } from "../Services/Client.service"
 import { ClientDomain, IClientProps } from "./Client.domain"
 
 const getRepository = () => {
-    let clientRepository: GenericRepository<ClientDomain, any, any>
+    let clientRepository: GenericRepository
 
     clientRepository = new ClientInMemoryRepository()
     return clientRepository
@@ -20,7 +20,7 @@ describe('Client Domain', () => {
     let clientService: ClientService<IClientProps, IClientProps, any>
     beforeEach(async () => {
         // const model = (await connection).model('Client', ClientSchema);
-        let clientRepository: GenericRepository<ClientDomain, any, any>
+        let clientRepository: GenericRepository
         // clientRepository = new ClientMongooseRepository(model)
         clientRepository = new ClientInMemoryRepository()
         clientService = new ClientService(clientRepository)

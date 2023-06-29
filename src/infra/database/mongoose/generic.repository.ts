@@ -6,22 +6,23 @@ interface IOptions {
   skip: number;
 }
 
-export class GenericMongooseRepository<T, IQuery>
-  implements GenericRepository<T, IQuery, IOptions>
+export class GenericMongooseRepository
+  implements GenericRepository
 {
-  constructor(public readonly _model: Model<T>) {}
-  get model(): Model<T> {
+  constructor(public readonly _model: Model<any>) {
+  }
+  get model(): Model<any> {
     return this._model;
   }
-  async create(instance: T): Promise<any> {
+  async create(instance: any): Promise<any> {
     const createdInstance = this._model.create(instance);
     return createdInstance;
   }
-  async findAll(query?: any, options?: IOptions): Promise<any[]> {
+  async findAll(query?: any, options?: any): Promise<any[]> {
     const instances = await this._model.find(query);
     return instances;
   }
-  async findOne(query: any, options?: IOptions): Promise<any> {
+  async findOne(query: any, options?: any): Promise<any> {
     const instance = await this._model.findOne(query);
     return instance;
   }
@@ -29,7 +30,7 @@ export class GenericMongooseRepository<T, IQuery>
     const instance = await this._model.findById(id);
     return instance;
   }
-  async updateById(id: any, data: UpdateQuery<T> | undefined): Promise<any> {
+  async updateById(id: any, data: UpdateQuery<any> | undefined): Promise<any> {
     const updated = await this._model.findByIdAndUpdate(id, data);
     return updated;
   }
@@ -37,11 +38,11 @@ export class GenericMongooseRepository<T, IQuery>
     const removed = this._model.findByIdAndRemove(id);
     return removed;
   }
-  async update(query: any, instance: UpdateQuery<T> | UpdateWithAggregationPipeline | undefined, options?: IOptions) {
+  async update(query: any, instance: UpdateQuery<any> | UpdateWithAggregationPipeline | undefined, options?: IOptions) {
     const updated = await this._model.updateMany(query, instance);
     return updated;
   }
-  async findOrCreate(query: FilterQuery<T> | undefined, instance: T | undefined) {
+  async findOrCreate(query: FilterQuery<any> | undefined, instance: any | undefined) {
     const finded = await this._model.findOne(query);
     if (finded) {
       return finded;

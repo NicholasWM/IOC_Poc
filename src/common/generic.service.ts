@@ -1,7 +1,10 @@
 import { GenericRepository } from "./generic.repository"
 
 export class GenericService<ModelInstance, IQuery, IOptions> {
-    constructor(private readonly _repository: GenericRepository<ModelInstance, IQuery, IOptions>) {}
+    _repository: GenericRepository
+    constructor(repository: GenericRepository) {
+        this._repository = repository
+    }
 
     async findAll(query: any) {
         return await this._repository.findAll(query)

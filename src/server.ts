@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { ClientModule } from './modules/ClientDI/Client.module';
+import { ClientModule } from './modules/ClientDirect/Client.module';
 import mongoose from 'mongoose';
 
 const app = express();
