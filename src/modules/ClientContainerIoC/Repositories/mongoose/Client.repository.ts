@@ -1,11 +1,11 @@
-import { Model } from "mongoose";
-import { ClientDocument } from "./Client.model";
+import { Container } from "../../../../common/Container";
 import { GenericMongooseRepository } from "../../../../infra/database/mongoose/generic.repository";
 
 export class ClientMongooseRepository extends GenericMongooseRepository {
-  constructor(_model: Model<ClientDocument>) {
+  constructor(container: Container) {
+    const _model = container.services['ClientMongoModel'];
     super(_model);
-    console.log('MongooseRepository constructor')
+    console.log('MongooseRepository constructor', _model)
   }
 
   dropDatabase() {

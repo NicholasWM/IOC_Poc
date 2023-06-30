@@ -7,7 +7,9 @@ import { GenericService } from "./generic.service"
 import { ClientDomain, IClientProps } from "../modules/ClientDI/Domain/Client.domain"
 
 export class GenericController<ClientDomain, IClientProps, IOptions> {
-    constructor(private readonly _service: GenericService<ClientDomain, IClientProps, IOptions>) {}
+    constructor(private readonly _service: GenericService<ClientDomain, IClientProps, IOptions>) {
+        // console.log(this._service)
+    }
 
     async findAll(req: Request, res: Response, next: NextFunction) {
         try {
